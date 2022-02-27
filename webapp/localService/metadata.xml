@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://MGD.LEXMARK.COM:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='ECD_CLIENT_220')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGF_BILCNC_APPROVE_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZG_C_BILCNC_HEADType" sap:label="Consumption View for Doc Rev VF11 Header" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="request_no"/>
+                </Key>
+                <Property Name="Action_approve_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Action_reject_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="request_no" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Request Number" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="crea_uname" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User Name"/>
+                <Property Name="name_textc" Type="Edm.String" MaxLength="80" sap:label="Created By"/>
+                <Property Name="geo" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Geo" sap:value-list="standard"/>
+                <Property Name="corrective_action" Type="Edm.String" MaxLength="1000" sap:label="Corrective Action"/>
+                <Property Name="crea_date_time" Type="Edm.DateTime" Precision="7" sap:display-format="Date" sap:label="Created On"/>
+                <Property Name="status" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Status"/>
+                <Property Name="ddtext" Type="Edm.String" MaxLength="60" sap:label="Status" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="request_type" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Type of Request"/>
+                <Property Name="typeDesc" Type="Edm.String" MaxLength="60" sap:label="Type of Request" sap:creatable="false" sap:updatable="false" sap:value-list="standard"/>
+                <Property Name="reversal_category" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Reversal Category"/>
+                <Property Name="categoryDesc" Type="Edm.String" MaxLength="60" sap:label="Reversal Category" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="cnc_reason" Type="Edm.String" MaxLength="700" sap:label="Reason for Cancellation"/>
+                <Property Name="ritm_no_mps" Type="Edm.String" MaxLength="50" sap:display-format="UpperCase" sap:label="RITM Number for MPS"/>
+                <NavigationProperty Name="to_GeoValueHelp" Relationship="ZGF_BILCNC_APPROVE_SRV.assoc_26D67900AB85D010DF5BA41AB757D1B4" FromRole="FromRole_assoc_26D67900AB85D010DF5BA41AB757D1B4" ToRole="ToRole_assoc_26D67900AB85D010DF5BA41AB757D1B4"/>
+                <NavigationProperty Name="to_Item" Relationship="ZGF_BILCNC_APPROVE_SRV.assoc_B7CC94BA5A2E2681061EDBC585F8B5D3" FromRole="FromRole_assoc_B7CC94BA5A2E2681061EDBC585F8B5D3" ToRole="ToRole_assoc_B7CC94BA5A2E2681061EDBC585F8B5D3"/>
+                <NavigationProperty Name="to_ReqTypValueHelp" Relationship="ZGF_BILCNC_APPROVE_SRV.assoc_A1B920B3348E0708DECF2A5CEED4016B" FromRole="FromRole_assoc_A1B920B3348E0708DECF2A5CEED4016B" ToRole="ToRole_assoc_A1B920B3348E0708DECF2A5CEED4016B"/>
+                <NavigationProperty Name="to_RevCatValueHelp" Relationship="ZGF_BILCNC_APPROVE_SRV.assoc_5E874BB421E046D453B69E41CA3E8BA9" FromRole="FromRole_assoc_5E874BB421E046D453B69E41CA3E8BA9" ToRole="ToRole_assoc_5E874BB421E046D453B69E41CA3E8BA9"/>
+                <NavigationProperty Name="to_Status" Relationship="ZGF_BILCNC_APPROVE_SRV.assoc_83F7CCE328F69BAF2918E6AFA71B9E8A" FromRole="FromRole_assoc_83F7CCE328F69BAF2918E6AFA71B9E8A" ToRole="ToRole_assoc_83F7CCE328F69BAF2918E6AFA71B9E8A"/>
+            </EntityType>
+            <EntityType Name="ZG_I_BILCNC_REVC_VHType" sap:label="Value Help for VF11 Reversal Category" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="rev_cat"/>
+                </Key>
+                <Property Name="rev_cat" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Reversal Category Code"/>
+                <Property Name="RevCategory" Type="Edm.String" MaxLength="60" sap:label="Reversal Category"/>
+            </EntityType>
+            <EntityType Name="ZG_I_GEO_VHType" sap:label="Geo Value Help" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="geo_code"/>
+                </Key>
+                <Property Name="geo_code" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Geo Code"/>
+                <Property Name="GeoDesc" Type="Edm.String" MaxLength="60" sap:label="Geo"/>
+            </EntityType>
+            <EntityType Name="ZG_C_BILCNC_ITEMType" sap:label="Consumption View for Doc Rev VF11 Item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="request_no"/>
+                    <PropertyRef Name="item_no"/>
+                </Key>
+                <Property Name="request_no" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Request Number" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="item_no" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase" sap:label="Item No" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="vbeln_vf" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Billing Document" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="vbeln_va" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Sales Document" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="vbeln_vl" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Delivery" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="vkorg" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Sales Organization" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="fkdat" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Billing Date" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="kunag" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Sold-To Party" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="name1" Type="Edm.String" MaxLength="35" sap:label="Customer Name" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="cancellation_date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Cancellation Date" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="intercmp_bill" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Intercompany Billing" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="invoice_list" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Invoice List" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="faksk" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="SD Billing Block" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="fksto" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Bill Doc Cancelled" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="netwr" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="waerk" sap:label="Amt in Doc Currency" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="waerk" Type="Edm.String" MaxLength="5" sap:label="Document Currency" sap:semantics="currency-code"/>
+                <Property Name="dmbe3" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="hwae3" sap:label="LC3 amount" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="hwae3" Type="Edm.String" MaxLength="5" sap:label="Local currency 3" sap:semantics="currency-code"/>
+                <NavigationProperty Name="to_Header" Relationship="ZGF_BILCNC_APPROVE_SRV.assoc_D7E8753C87285D6C31390CDF56985B57" FromRole="FromRole_assoc_D7E8753C87285D6C31390CDF56985B57" ToRole="ToRole_assoc_D7E8753C87285D6C31390CDF56985B57"/>
+            </EntityType>
+            <EntityType Name="ZG_C_BILCNC_STATUSType" sap:label="Consumption View for Doc Rev VF11 Status" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="request_no"/>
+                    <PropertyRef Name="step"/>
+                </Key>
+                <Property Name="request_no" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Request Number" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="step" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Step" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="status" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Status"/>
+                <Property Name="ddtext" Type="Edm.String" MaxLength="60" sap:label="Status" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="bname" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="User"/>
+                <Property Name="name_textc" Type="Edm.String" MaxLength="80" sap:label="User Name" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="datum" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="uzeit" Type="Edm.Time" Precision="0" sap:label="Time" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="comments" Type="Edm.String" MaxLength="256" sap:label="Comments" sap:creatable="false" sap:updatable="false"/>
+                <NavigationProperty Name="to_Header" Relationship="ZGF_BILCNC_APPROVE_SRV.assoc_87F8C6CEC2A70728FBC9E5396B159544" FromRole="FromRole_assoc_87F8C6CEC2A70728FBC9E5396B159544" ToRole="ToRole_assoc_87F8C6CEC2A70728FBC9E5396B159544"/>
+            </EntityType>
+            <EntityType Name="ZG_I_BILCNC_REQTYPE_VHType" sap:label="Value Help for VF11 Request Type" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="req_type"/>
+                </Key>
+                <Property Name="req_type" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Request Type Code"/>
+                <Property Name="Reqtype" Type="Edm.String" MaxLength="60" sap:label="Request Type"/>
+            </EntityType>
+            <Association Name="assoc_D7E8753C87285D6C31390CDF56985B57" sap:content-version="1">
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_ITEMType" Multiplicity="1" Role="FromRole_assoc_D7E8753C87285D6C31390CDF56985B57"/>
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" Multiplicity="1" Role="ToRole_assoc_D7E8753C87285D6C31390CDF56985B57"/>
+            </Association>
+            <Association Name="assoc_87F8C6CEC2A70728FBC9E5396B159544" sap:content-version="1">
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_STATUSType" Multiplicity="1" Role="FromRole_assoc_87F8C6CEC2A70728FBC9E5396B159544"/>
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" Multiplicity="1" Role="ToRole_assoc_87F8C6CEC2A70728FBC9E5396B159544"/>
+            </Association>
+            <Association Name="assoc_B7CC94BA5A2E2681061EDBC585F8B5D3" sap:content-version="1">
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" Multiplicity="1" Role="FromRole_assoc_B7CC94BA5A2E2681061EDBC585F8B5D3"/>
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_ITEMType" Multiplicity="*" Role="ToRole_assoc_B7CC94BA5A2E2681061EDBC585F8B5D3"/>
+            </Association>
+            <Association Name="assoc_A1B920B3348E0708DECF2A5CEED4016B" sap:content-version="1">
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" Multiplicity="1" Role="FromRole_assoc_A1B920B3348E0708DECF2A5CEED4016B"/>
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_I_BILCNC_REQTYPE_VHType" Multiplicity="0..1" Role="ToRole_assoc_A1B920B3348E0708DECF2A5CEED4016B"/>
+            </Association>
+            <Association Name="assoc_5E874BB421E046D453B69E41CA3E8BA9" sap:content-version="1">
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" Multiplicity="1" Role="FromRole_assoc_5E874BB421E046D453B69E41CA3E8BA9"/>
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_I_BILCNC_REVC_VHType" Multiplicity="0..1" Role="ToRole_assoc_5E874BB421E046D453B69E41CA3E8BA9"/>
+            </Association>
+            <Association Name="assoc_83F7CCE328F69BAF2918E6AFA71B9E8A" sap:content-version="1">
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" Multiplicity="1" Role="FromRole_assoc_83F7CCE328F69BAF2918E6AFA71B9E8A"/>
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_STATUSType" Multiplicity="*" Role="ToRole_assoc_83F7CCE328F69BAF2918E6AFA71B9E8A"/>
+            </Association>
+            <Association Name="assoc_26D67900AB85D010DF5BA41AB757D1B4" sap:content-version="1">
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" Multiplicity="1" Role="FromRole_assoc_26D67900AB85D010DF5BA41AB757D1B4"/>
+                <End Type="ZGF_BILCNC_APPROVE_SRV.ZG_I_GEO_VHType" Multiplicity="0..1" Role="ToRole_assoc_26D67900AB85D010DF5BA41AB757D1B4"/>
+            </Association>
+            <EntityContainer Name="ZGF_BILCNC_APPROVE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZG_C_BILCNC_HEAD" EntityType="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZG_I_BILCNC_REVC_VH" EntityType="ZGF_BILCNC_APPROVE_SRV.ZG_I_BILCNC_REVC_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZG_I_GEO_VH" EntityType="ZGF_BILCNC_APPROVE_SRV.ZG_I_GEO_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZG_C_BILCNC_ITEM" EntityType="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_ITEMType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZG_C_BILCNC_STATUS" EntityType="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_STATUSType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZG_I_BILCNC_REQTYPE_VH" EntityType="ZGF_BILCNC_APPROVE_SRV.ZG_I_BILCNC_REQTYPE_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="assoc_87F8C6CEC2A70728FBC9E5396B159544" Association="ZGF_BILCNC_APPROVE_SRV.assoc_87F8C6CEC2A70728FBC9E5396B159544" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZG_C_BILCNC_STATUS" Role="FromRole_assoc_87F8C6CEC2A70728FBC9E5396B159544"/>
+                    <End EntitySet="ZG_C_BILCNC_HEAD" Role="ToRole_assoc_87F8C6CEC2A70728FBC9E5396B159544"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_83F7CCE328F69BAF2918E6AFA71B9E8A" Association="ZGF_BILCNC_APPROVE_SRV.assoc_83F7CCE328F69BAF2918E6AFA71B9E8A" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZG_C_BILCNC_HEAD" Role="FromRole_assoc_83F7CCE328F69BAF2918E6AFA71B9E8A"/>
+                    <End EntitySet="ZG_C_BILCNC_STATUS" Role="ToRole_assoc_83F7CCE328F69BAF2918E6AFA71B9E8A"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_D7E8753C87285D6C31390CDF56985B57" Association="ZGF_BILCNC_APPROVE_SRV.assoc_D7E8753C87285D6C31390CDF56985B57" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZG_C_BILCNC_ITEM" Role="FromRole_assoc_D7E8753C87285D6C31390CDF56985B57"/>
+                    <End EntitySet="ZG_C_BILCNC_HEAD" Role="ToRole_assoc_D7E8753C87285D6C31390CDF56985B57"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_B7CC94BA5A2E2681061EDBC585F8B5D3" Association="ZGF_BILCNC_APPROVE_SRV.assoc_B7CC94BA5A2E2681061EDBC585F8B5D3" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZG_C_BILCNC_HEAD" Role="FromRole_assoc_B7CC94BA5A2E2681061EDBC585F8B5D3"/>
+                    <End EntitySet="ZG_C_BILCNC_ITEM" Role="ToRole_assoc_B7CC94BA5A2E2681061EDBC585F8B5D3"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_5E874BB421E046D453B69E41CA3E8BA9" Association="ZGF_BILCNC_APPROVE_SRV.assoc_5E874BB421E046D453B69E41CA3E8BA9" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZG_C_BILCNC_HEAD" Role="FromRole_assoc_5E874BB421E046D453B69E41CA3E8BA9"/>
+                    <End EntitySet="ZG_I_BILCNC_REVC_VH" Role="ToRole_assoc_5E874BB421E046D453B69E41CA3E8BA9"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_A1B920B3348E0708DECF2A5CEED4016B" Association="ZGF_BILCNC_APPROVE_SRV.assoc_A1B920B3348E0708DECF2A5CEED4016B" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZG_C_BILCNC_HEAD" Role="FromRole_assoc_A1B920B3348E0708DECF2A5CEED4016B"/>
+                    <End EntitySet="ZG_I_BILCNC_REQTYPE_VH" Role="ToRole_assoc_A1B920B3348E0708DECF2A5CEED4016B"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_26D67900AB85D010DF5BA41AB757D1B4" Association="ZGF_BILCNC_APPROVE_SRV.assoc_26D67900AB85D010DF5BA41AB757D1B4" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZG_C_BILCNC_HEAD" Role="FromRole_assoc_26D67900AB85D010DF5BA41AB757D1B4"/>
+                    <End EntitySet="ZG_I_GEO_VH" Role="ToRole_assoc_26D67900AB85D010DF5BA41AB757D1B4"/>
+                </AssociationSet>
+                <FunctionImport Name="ZG_C_BILCNC_HEADAction_approve" ReturnType="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" EntitySet="ZG_C_BILCNC_HEAD" m:HttpMethod="POST" sap:action-for="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" sap:applicable-path="Action_approve_ac">
+                    <Parameter Name="UserComment" Type="Edm.String" Mode="In" MaxLength="255" Nullable="true"/>
+                    <Parameter Name="request_no" Type="Edm.String" Mode="In" MaxLength="10"/>
+                </FunctionImport>
+                <FunctionImport Name="ZG_C_BILCNC_HEADAction_reject" ReturnType="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" EntitySet="ZG_C_BILCNC_HEAD" m:HttpMethod="POST" sap:action-for="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType" sap:applicable-path="Action_reject_ac">
+                    <Parameter Name="UserComment" Type="Edm.String" Mode="In" MaxLength="255" Nullable="false"/>
+                    <Parameter Name="request_no" Type="Edm.String" Mode="In" MaxLength="10"/>
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType/geo" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Geo Value Help"/>
+                        <PropertyValue Property="CollectionPath" String="ZG_I_GEO_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="geo"/>
+                                    <PropertyValue Property="ValueListProperty" String="geo_code"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="GeoDesc"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZGF_BILCNC_APPROVE_SRV.ZG_C_BILCNC_HEADType/typeDesc" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value Help for VF11 Request Type"/>
+                        <PropertyValue Property="CollectionPath" String="ZG_I_BILCNC_REQTYPE_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="request_type"/>
+                                    <PropertyValue Property="ValueListProperty" String="req_type"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Reqtype"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://MGD.LEXMARK.COM:443/sap/opu/odata/sap/ZGF_BILCNC_APPROVE_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://MGD.LEXMARK.COM:443/sap/opu/odata/sap/ZGF_BILCNC_APPROVE_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
